@@ -1,0 +1,83 @@
+# PDF_Study_Agent Project Overview
+
+## Project Objective
+
+Create a versatile agent capable of summarizing PDF documents and generating interactive quizzes. This agent will leverage AI processing for educational purposes, providing students with concise study material and self-assessment quizzes.
+
+## 1. Setup & Context Preservation (Essential)
+
+**Documentation File:**
+Immediately create or overwrite a file named `GEMINI.md` in the root directory of your project.
+
+**Context Storage:**
+The `GEMINI.md` file will serve as a persistent project reference. Include the full project description, specifications, and instructions here so the agent can access it at any time for context.
+
+## 2. Technology Stack & Environment
+
+* **Model/Server:** Gemini CLI with a capable model such as `gemini-2.5-pro`.
+* **MCP Server Context:** Use `Context7` as the official MCP server context.
+* **Agent SDK:** OpenAI Agents SDK (Python implementation) for orchestrating agent behavior, tools, and workflows.
+* **Frontend:** Streamlit for a user-friendly and interactive web interface.
+* **PDF Processing:** PyPDF (or `pypdf`) for extracting text from PDF files reliably.
+
+## 3. Agent Functionality – PDF Summarizer
+
+**Input:**
+Users can upload a single PDF via a Streamlit file uploader (`st.file_uploader`).
+
+**Text Extraction:**
+
+* Use PyPDF to extract text from all pages of the uploaded PDF.
+* Handle multi-page documents and typical extraction challenges gracefully.
+
+**Processing:**
+
+* Send the extracted text to the Gemini model for analysis.
+* The model should produce a clear, concise, and meaningful summary capturing all key concepts and important details.
+
+**Output/Display:**
+
+* Show the summary prominently in Streamlit.
+* Students can choose different display styles (cards, containers, expanders) for a visually appealing presentation.
+
+## 4. Agent Functionality – Quiz Generator
+
+**Trigger:**
+Enable a "Create Quiz" button only after the summary is successfully generated.
+
+**Input Source:**
+Use the **original extracted text** (not the summary) to generate quiz questions.
+
+**Question Generation:**
+
+* Ask the Gemini model to create at least 10 high-quality **Multiple Choice Questions (MCQs)**, each with 4 options (A, B, C, D) and a hidden correct answer.
+* Include a variety of other question types (True/False, Fill-in-the-Blank) to reach a total of 15–20 questions.
+
+**Output/Display:**
+
+* Present all questions in a clean, interactive format on Streamlit.
+* Include a “Check Answers” button for users to verify their responses.
+
+
+## 5. Technical & Code Guidelines
+
+* Follow **OpenAI Agents SDK** best practices for Python.
+* Include a **requirements.txt** file to manage dependencies.
+* Handle errors gracefully (e.g., non-PDF uploads or extraction failures) and provide informative user feedback.
+* The application should run with a single command:
+
+```bash
+streamlit run app.py
+```
+
+## Next Steps
+
+Develop the **PDF_Study_Agent** project with the following components:
+
+1. `app.py` – Streamlit frontend and user interaction logic.
+2. Agent logic using OpenAI Agents SDK for PDF summarization and quiz generation.
+3. PDF extraction code using PyPDF.
+4. Complete `GEMINI.md` file populated with this project context.
+
+This setup ensures a robust, interactive, and student-friendly learning assistant that combines AI-powered summarization with self-assessment quizzes.
+
